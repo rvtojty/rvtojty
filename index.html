@@ -172,8 +172,6 @@ img,video{
 <body>
 
 <div class="hearts" id="hearts"></div>
-<div id="loveText">بحبك يا ريتاج ❤️</div>
-
 <!-- صفحة الدخول -->
 <div id="login">
     <div class="box">
@@ -197,21 +195,27 @@ img,video{
 </audio>
 
 <header>
-    <h1>❤️ My all i have ❤️</h1>
+    <h1>❤️ my all i have ❤️</h1>
     <p>بحبك وبموت فيكي</p>
     <div class="counter" id="counter"></div>
 </header>
 
 <!-- الصورة مع النص بدل الزر -->
 <div id="photoButton" onclick="showPhotos()">
-    <img src="myphoto.png">
+    <img src="myphoto.jpeg">
     <div>😂❤️دوسي عليا</div>
 </div>
+
 <section id="photos">
     <h2>صورنا 📸</h2>
-    <img src="image1.jpeg"><img src="image2.jpeg"><img src="image3.jpeg">
-    <img src="image4.jpeg"><img src="image5.jpeg">
-    <img src="image6.jpeg"><img src="image7.jpeg"><img src="image8.jpeg">
+    <img src="image1.jpeg">
+    <img src="image2.jpeg">
+    <img src="image3.jpeg">
+    <img src="image4.jpeg">
+    <img src="image5.jpeg">
+    <img src="image6.jpeg">
+    <img src="image7.jpeg">
+    <img src="image8.jpeg">
    
 </section>
 
@@ -221,6 +225,7 @@ img,video{
     <div class="memory">فاكره اول مره انجتك فيها وانا بروحك كنت حاسس ساعتها انك فعلا بتاعتي وكان دايما كل مره بروحك فيها بنعمل حاجه جديده وكان تاني مره مسكت فيها ايدك وبعد كده مسكتها وبوستها</div>
     <div class="memory">فاكره لما انا وانتي كنا قاعدين سوا وجت الست العجوزه بالورد ودعتلنا اننا نتجوز ونبقا مع بعض طول العمر ساعتها مكنتش عايز حاجه ف الدنيا غير ان كلام الست ده يتحقق يمكن مبكونش بعرف اوصف حبي ليكي وانا معاكي بس صدقيني انتي متعرفيش انتي غلاوتك ف قلبي عامله ازاي ياريتاج</div>
 </section>
+
 </div>
 
 <script>
@@ -251,7 +256,7 @@ let i=0;
 
 // ====== تسجيل الدخول ======
 loginBtn.onclick = ()=>{
-    if(password.value==="1912"){
+    if(password.value==="1"){
         login.style.display="none";
         messagePage.style.display="flex";
         typeText.innerHTML="";
@@ -304,6 +309,9 @@ function createHeart(){
 }
 setInterval(createHeart,500);
 
+// ====== فيديو ======
+video.onplay=()=>music.pause();
+video.onpause=()=>music.play();
 
 // ====== ليل/نهار ======
 const hour = new Date().getHours();
