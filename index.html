@@ -2,6 +2,10 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
+
+<!-- مهم جدًا للموبايل -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>❤️ my all i have ❤️</title>
 
 <style>
@@ -162,6 +166,54 @@ img,video{
     font-weight:bold;
     text-shadow:0 0 10px rgba(0,0,0,0.7);
 }
+
+/* ================== تحسين موبايل بدون تغيير تصميم ================== */
+@media (max-width:768px){
+
+    body{
+        overflow-x:hidden;
+    }
+
+    .box{
+        padding:25px;
+    }
+
+    input,button{
+        width:100%;
+    }
+
+    header h1{
+        font-size:22px;
+    }
+
+    #typeText{
+        font-size:22px;
+    }
+
+    #photoButton{
+        width:160px;
+    }
+
+    .memory{
+        font-size:14px;
+    }
+}
+
+@media (max-width:480px){
+
+    #typeText{
+        font-size:18px;
+    }
+
+    #photoButton{
+        width:140px;
+    }
+
+    .counter{
+        font-size:16px;
+    }
+}
+
 </style>
 </head>
 
@@ -169,7 +221,7 @@ img,video{
 
 <div class="hearts" id="hearts"></div>
 
-<!-- صفحة الدخول -->
+<!-- الدخول -->
 <div id="login">
     <div class="box">
         <h2>🔐 احلي بقره اكتبي الباسوورد</h2>
@@ -179,12 +231,12 @@ img,video{
     </div>
 </div>
 
-<!-- صفحة الرسالة -->
+<!-- الرسالة -->
 <div id="messagePage">
     <div id="typeText"></div>
 </div>
 
-<!-- الموقع بدون الصور -->
+<!-- الموقع -->
 <div id="siteWithoutPhotos">
 
 <audio id="music">
@@ -201,12 +253,14 @@ img,video{
     <img src="myphoto.jpeg">
     <div>😂❤️دوسي عليا</div>
 </div>
+
 <section id="photos">
     <h2>صورنا 📸</h2>
     <img src="image1.jpeg"><img src="image2.jpeg"><img src="image3.jpeg">
     <img src="image4.jpeg"><img src="image5.jpeg">
     <img src="image6.jpeg"><img src="image7.jpeg"><img src="image8.jpeg">
 </section>
+
 <section>
     <h2>ذكرياتنا 💌</h2>
 
@@ -223,9 +277,11 @@ img,video{
     </div>
 
 </section>
+
 </div>
 
 <script>
+
 const loginBtn=document.getElementById("loginBtn");
 const password=document.getElementById("password");
 const login=document.getElementById("login");
@@ -248,7 +304,7 @@ const message =
 
 let i=0;
 
-loginBtn.onclick = ()=>{
+loginBtn.onclick=()=>{
     if(password.value==="2582024"){
 
         music.currentTime = 0;
@@ -302,6 +358,7 @@ function createHeart(){
     setTimeout(()=>el.remove(),10000);
 }
 setInterval(createHeart,500);
+
 </script>
 
 </body>
