@@ -6,64 +6,17 @@
 
 <style>
 body{
-    margin:0;
     font-family:Arial;
     text-align:center;
-    background:linear-gradient(135deg,#ff9a9e,#fad0c4);
+    background:#ff9a9e;
 }
 
-/* لوجين */
-#login{
-    height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-}
-.box{
-    background:white;
-    padding:30px;
-    border-radius:20px;
-}
-input,button{
+/* إخفاء الصفحات */
+#messagePage,#site{display:none;}
+
+button,input{
     padding:10px;
     margin:10px;
-    border-radius:10px;
-    border:none;
-}
-
-/* رسالة */
-#messagePage{
-    position:fixed;
-    inset:0;
-    background:black;
-    color:white;
-    display:none;
-    justify-content:center;
-    align-items:center;
-    font-size:26px;
-    padding:20px;
-}
-
-/* الموقع */
-#site{
-    display:none;
-}
-
-img{
-    width:250px;
-    border-radius:20px;
-    margin-top:20px;
-}
-
-/* قلوب */
-.heart{
-    position:fixed;
-    font-size:20px;
-    animation:up 3s linear;
-}
-@keyframes up{
-    from{transform:translateY(0);opacity:1;}
-    to{transform:translateY(-100vh);opacity:0;}
 }
 </style>
 </head>
@@ -72,17 +25,15 @@ img{
 
 <!-- لوجين -->
 <div id="login">
-    <div class="box">
-        <h2>🔐 احلي بقره اكتبي الباسوورد</h2>
-        <input type="password" id="pass">
-        <button onclick="login()">دخول</button>
-        <div id="err" style="color:red;display:none;">غلط 😢</div>
-    </div>
+    <h2>🔐 اكتبي الباسورد</h2>
+    <input type="password" id="pass">
+    <button onclick="login()">دخول</button>
+    <div id="err" style="color:red;display:none;">غلط 😢</div>
 </div>
 
 <!-- رسالة -->
 <div id="messagePage">
-    <div id="text"></div>
+    <h2 id="text"></h2>
 </div>
 
 <!-- الموقع -->
@@ -90,11 +41,11 @@ img{
     <h1>❤️ my all i have ❤️</h1>
     <p>بحبك وبموت فيكي</p>
 
-    <button onclick="loveBoom()">❤️ بحبك</button>
     <button onclick="toggleMusic()">🔊 صوت</button>
+    <button onclick="love()">❤️ بحبك</button>
 
     <br>
-    <img src="myphoto.jpeg">
+    <img src="myphoto.jpeg" width="250">
 </div>
 
 <audio id="music">
@@ -102,72 +53,42 @@ img{
 </audio>
 
 <script>
-
-// ===== عناصر =====
-let music=document.getElementById("music");
-
-// ===== لوجين =====
 function login(){
-    let pass=document.getElementById("pass").value;
-
-    if(pass==="1"){
+    if(document.getElementById("pass").value==="1"){
         document.getElementById("login").style.display="none";
-        document.getElementById("messagePage").style.display="flex";
-        startTyping();
+        document.getElementById("messagePage").style.display="block";
 
-        // تشغيل الصوت (بعد تفاعل)
-        music.play().catch(()=>{});
+        let msg="بحبك ❤️";
+        let i=0;
+
+        function type(){
+            if(i<msg.length){
+                document.getElementById("text").innerHTML+=msg[i];
+                i++;
+                setTimeout(type,80);
+            }else{
+                setTimeout(()=>{
+                    document.getElementById("messagePage").style.display="none";
+                    document.getElementById("site").style.display="block";
+                },800);
+            }
+        }
+        type();
+
+        document.getElementById("music").play().catch(()=>{});
     }else{
         document.getElementById("err").style.display="block";
     }
 }
 
-// ===== كتابة =====
-let msg="انتي أجمل حاجة في حياتي ❤️";
-let i=0;
-
-function startTyping(){
-    let textDiv=document.getElementById("text");
-    textDiv.innerHTML="";
-
-    function type(){
-        if(i<msg.length){
-            textDiv.innerHTML+=msg[i];
-            i++;
-            setTimeout(type,70);
-        }else{
-            setTimeout(()=>{
-                document.getElementById("messagePage").style.display="none";
-                document.getElementById("site").style.display="block";
-            },800);
-        }
-    }
-    type();
-}
-
-// ===== صوت =====
 function toggleMusic(){
-    if(music.paused){
-        music.play();
-    }else{
-        music.pause();
-    }
+    let m=document.getElementById("music");
+    m.paused ? m.play() : m.pause();
 }
 
-// ===== قلوب =====
-function loveBoom(){
-    for(let i=0;i<15;i++){
-        let h=document.createElement("div");
-        h.className="heart";
-        h.innerHTML="❤️";
-        h.style.left=Math.random()*100+"vw";
-        h.style.bottom="0";
-        document.body.appendChild(h);
-
-        setTimeout(()=>h.remove(),3000);
-    }
+function love(){
+    alert("بحبك جدًا ❤️");
 }
-
 </script>
 
 </body>
