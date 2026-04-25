@@ -2,7 +2,7 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<title>❤️ my all i have ❤️</title>
+<title>❤️ My Soulmate ❤️</title>
 
 <style>
 body{
@@ -13,16 +13,11 @@ body{
     overflow-x:hidden;
     transition:0.5s;
 }
-body.night{
-    background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
-    color:white;
-}
 
 .hearts{
     position:fixed;
     inset:0;
     pointer-events:none;
-    z-index:0;
 }
 .heart{
     position:absolute;
@@ -70,7 +65,8 @@ button{
     display:none;
     justify-content:center;
     align-items:center;
-    z-index:10;
+    text-align:center;
+    padding:20px;
 }
 #typeText{
     font-size:28px;
@@ -78,23 +74,23 @@ button{
     max-width:650px;
 }
 
-#siteWithoutPhotos{display:none;}
+#site{
+    display:none;
+}
 
 header{
     background:rgba(255,255,255,0.85);
     padding:30px;
 }
 
-.counter{font-size:18px;margin-top:10px;}
+.counter{margin-top:10px;}
 
 img{
     width:90%;
     max-width:300px;
     border-radius:15px;
-    margin:10px auto;
-    display:block;
+    margin:10px;
 }
-
 .memory{
     background:white;
     padding:15px;
@@ -144,35 +140,32 @@ img{
 </div>
 
 <!-- site -->
-<div id="siteWithoutPhotos">
+<div id="site">
 
 <audio id="music" loop preload="auto">
     <source src="love.mp3" type="audio/mpeg">
 </audio>
 
 <header>
-    <h1>❤️ my all i have ❤️</h1>
-    <p>بحبك ❤️</p>
+    <h1>❤️ My Soulmate ❤️</h1>
     <div class="counter" id="counter"></div>
 </header>
 
 <div id="photoButton" onclick="showPhotos()">
-    <img src="myphoto.jpeg">
-    <div>دوس هنا ❤️</div>
+    <img src="myphoto.png">
+    <div>دوس ❤️</div>
 </div>
 
 <section id="photos" style="display:none;">
     <h2>صورنا 📸</h2>
-    <img src="image1.jpeg">
-    <img src="image2.jpeg">
-    <img src="image3.jpeg">
+    <img src="image1.jpg">
+    <img src="image2.jpg">
 </section>
 
 <section>
     <h2>ذكريات 💌</h2>
-    <div class="memory">أول مقابلة كانت أجمل يوم ❤️</div>
-    <div class="memory">كل لحظة معاك كانت مختلفة ❤️</div>
-    <div class="memory">بحبك أكتر من أي حاجة ❤️</div>
+    <div class="memory">أول لقاء ❤️</div>
+    <div class="memory">أحلى أيام ❤️</div>
 </section>
 
 </div>
@@ -184,26 +177,28 @@ const login=document.getElementById("login");
 const error=document.getElementById("error");
 const messagePage=document.getElementById("messagePage");
 const typeText=document.getElementById("typeText");
-const siteWithoutPhotos=document.getElementById("siteWithoutPhotos");
+const site=document.getElementById("site");
 const music=document.getElementById("music");
 const hearts=document.getElementById("hearts");
 
 const message =
 "❤️ بحبك ❤️\n\n" +
-"وجودك فرق حياتي\n" +
-"وضحتك أهم حاجة عندي\n" +
-"ومش عايز غيرك ❤️";
+"وجودك غير حياتي\n" +
+"وكل لحظة معاك كنز ❤️";
 
 let i=0;
 
 loginBtn.onclick = ()=>{
-    if(password.value==="1"){
+    if(password.value==="1912"){
         login.style.display="none";
         messagePage.style.display="flex";
-        typeText.innerHTML="";
+
         i=0;
+        typeText.innerHTML="";
         typeWriter();
 
+        // 🔥 تشغيل الصوت (مضمون بعد click)
+        music.load();
         music.currentTime=0;
         music.play().catch(()=>{});
 
@@ -220,7 +215,7 @@ function typeWriter(){
     } else {
         setTimeout(()=>{
             messagePage.style.display="none";
-            siteWithoutPhotos.style.display="block";
+            site.style.display="block";
         },800);
     }
 }
@@ -229,20 +224,21 @@ function showPhotos(){
     document.getElementById("photos").style.display="block";
 }
 
+// hearts
 setInterval(()=>{
-    const el=document.createElement("div");
-    el.className="heart";
-    el.innerHTML="❤️";
-    el.style.left=Math.random()*100+"vw";
-    el.style.fontSize=(15+Math.random()*20)+"px";
-    hearts.appendChild(el);
-    setTimeout(()=>el.remove(),8000);
+    const h=document.createElement("div");
+    h.className="heart";
+    h.innerHTML="❤️";
+    h.style.left=Math.random()*100+"vw";
+    h.style.fontSize=(15+Math.random()*20)+"px";
+    hearts.appendChild(h);
+    setTimeout(()=>h.remove(),8000);
 },400);
 
+// counter
 const start=new Date();
 setInterval(()=>{
-    const diff=new Date()-start;
-    const d=Math.floor(diff/86400000);
+    const d=Math.floor((new Date()-start)/86400000);
     document.getElementById("counter").innerHTML=
     `مع بعض بقالنا ${d} يوم ❤️`;
 },1000);
