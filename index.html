@@ -10,35 +10,6 @@ body{
     font-family:Arial;
     text-align:center;
     background:linear-gradient(135deg,#ff9a9e,#fad0c4);
-    overflow:hidden;
-}
-
-/* نجوم */
-#stars{
-    position:fixed;
-    inset:0;
-    z-index:0;
-}
-
-/* قلوب */
-.heart{
-    position:fixed;
-    animation:float 6s linear;
-}
-@keyframes float{
-    0%{transform:translateY(0);opacity:1;}
-    100%{transform:translateY(-100vh);opacity:0;}
-}
-
-/* بوس */
-.kiss{
-    position:fixed;
-    font-size:30px;
-    animation:kiss 1s forwards;
-}
-@keyframes kiss{
-    from{transform:scale(0);opacity:1;}
-    to{transform:scale(2);opacity:0;}
 }
 
 /* لوجين */
@@ -69,25 +40,35 @@ input,button{
     display:none;
     justify-content:center;
     align-items:center;
-    font-size:28px;
+    font-size:26px;
+    padding:20px;
 }
 
 /* الموقع */
 #site{
     display:none;
-    position:relative;
-    z-index:1;
 }
+
 img{
     width:250px;
     border-radius:20px;
+    margin-top:20px;
+}
+
+/* قلوب */
+.heart{
+    position:fixed;
+    font-size:20px;
+    animation:up 3s linear;
+}
+@keyframes up{
+    from{transform:translateY(0);opacity:1;}
+    to{transform:translateY(-100vh);opacity:0;}
 }
 </style>
 </head>
 
 <body>
-
-<canvas id="stars"></canvas>
 
 <!-- لوجين -->
 <div id="login">
@@ -109,27 +90,33 @@ img{
     <h1>❤️ my all i have ❤️</h1>
     <p>بحبك وبموت فيكي</p>
 
-    <button onclick="surprise()">🎁 مفاجأة</button>
     <button onclick="loveBoom()">❤️ بحبك</button>
     <button onclick="toggleMusic()">🔊 صوت</button>
 
-    <br><br>
+    <br>
     <img src="myphoto.jpeg">
 </div>
 
-<audio id="music" loop>
-    <source src="love.mp3">
+<audio id="music">
+    <source src="love.mp3" type="audio/mpeg">
 </audio>
 
 <script>
+
+// ===== عناصر =====
+let music=document.getElementById("music");
+
 // ===== لوجين =====
 function login(){
-    if(document.getElementById("pass").value==="1"){
+    let pass=document.getElementById("pass").value;
+
+    if(pass==="1"){
         document.getElementById("login").style.display="none";
         document.getElementById("messagePage").style.display="flex";
-        type();
-        music.play();
-        fadeIn();
+        startTyping();
+
+        // تشغيل الصوت (بعد تفاعل)
+        music.play().catch(()=>{});
     }else{
         document.getElementById("err").style.display="block";
     }
@@ -138,86 +125,48 @@ function login(){
 // ===== كتابة =====
 let msg="انتي أجمل حاجة في حياتي ❤️";
 let i=0;
-function type(){
-    if(i<msg.length){
-        document.getElementById("text").innerHTML+=msg[i];
-        i++;
-        setTimeout(type,70);
-    }else{
-        setTimeout(()=>{
-            document.getElementById("messagePage").style.display="none";
-            document.getElementById("site").style.display="block";
-        },1000);
+
+function startTyping(){
+    let textDiv=document.getElementById("text");
+    textDiv.innerHTML="";
+
+    function type(){
+        if(i<msg.length){
+            textDiv.innerHTML+=msg[i];
+            i++;
+            setTimeout(type,70);
+        }else{
+            setTimeout(()=>{
+                document.getElementById("messagePage").style.display="none";
+                document.getElementById("site").style.display="block";
+            },800);
+        }
     }
+    type();
 }
 
 // ===== صوت =====
-let music=document.getElementById("music");
 function toggleMusic(){
-    music.paused ? music.play() : music.pause();
-}
-
-// صوت تدريجي
-music.volume=0;
-function fadeIn(){
-    let v=0;
-    let x=setInterval(()=>{
-        if(v<1){
-            v+=0.05;
-            music.volume=v;
-        }else clearInterval(x);
-    },200);
-}
-
-// ===== مفاجأة =====
-function surprise(){
-    alert("بحبك جدًا ❤️");
+    if(music.paused){
+        music.play();
+    }else{
+        music.pause();
+    }
 }
 
 // ===== قلوب =====
 function loveBoom(){
-    for(let i=0;i<20;i++){
+    for(let i=0;i<15;i++){
         let h=document.createElement("div");
         h.className="heart";
         h.innerHTML="❤️";
         h.style.left=Math.random()*100+"vw";
-        h.style.top="80%";
+        h.style.bottom="0";
         document.body.appendChild(h);
+
         setTimeout(()=>h.remove(),3000);
     }
 }
-
-// ===== بوس =====
-document.onclick=(e)=>{
-    let k=document.createElement("div");
-    k.className="kiss";
-    k.innerHTML="💋";
-    k.style.left=e.clientX+"px";
-    k.style.top=e.clientY+"px";
-    document.body.appendChild(k);
-    setTimeout(()=>k.remove(),1000);
-};
-
-// ===== نجوم =====
-let c=document.getElementById("stars");
-let ctx=c.getContext("2d");
-c.width=innerWidth;
-c.height=innerHeight;
-
-let stars=[];
-for(let i=0;i<100;i++){
-    stars.push({x:Math.random()*c.width,y:Math.random()*c.height,r:Math.random()*2});
-}
-
-setInterval(()=>{
-    ctx.clearRect(0,0,c.width,c.height);
-    ctx.fillStyle="white";
-    stars.forEach(s=>{
-        ctx.beginPath();
-        ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
-        ctx.fill();
-    });
-},50);
 
 </script>
 
