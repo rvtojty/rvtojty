@@ -1,177 +1,8 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-<meta charset="UTF-8">
-<title>❤️ my all i have ❤️</title>
-
-<style>
-/* ================== الأساس ================== */
-body{
-    margin:0;
-    font-family:Arial, sans-serif;
-    text-align:center;
-    background:linear-gradient(135deg,#ff9a9e,#fad0c4);
-    overflow-x:hidden;
-    transition:0.5s;
-}
-body.night{
-    background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
-    color:white;
-}
-
-/* ================== القلوب ================== */
-.hearts{
-    position:fixed;
-    inset:0;
-    pointer-events:none;
-    z-index:0;
-}
-.heart{
-    position:absolute;
-    animation:float 8s linear infinite;
-}
-@keyframes float{
-    0%{transform:translateY(110vh);opacity:0;}
-    10%{opacity:1;}
-    100%{transform:translateY(-10vh);opacity:0;}
-}
-
-/* ================== نص الخلفية ================== */
-#loveText{
-    position:fixed;
-    top:50%;
-    left:50%;
-    transform:translate(-50%,-50%) scale(0.3);
-    font-size:60px;
-    font-weight:bold;
-    color:rgba(255,255,255,0.18);
-    text-shadow:0 0 30px rgba(255,255,255,0.5);
-    opacity:0;
-    pointer-events:none;
-    z-index:0;
-}
-.showLove{
-    animation:lovePop 2.5s ease forwards;
-}
-@keyframes lovePop{
-    0%{opacity:0;transform:translate(-50%,-50%) scale(0.2);filter:blur(10px);}
-    60%{opacity:1;transform:translate(-50%,-50%) scale(1.1);filter:blur(0);}
-    100%{opacity:0.25;transform:translate(-50%,-50%) scale(1);}
-}
-
-/* ================== صفحة الدخول ================== */
-#login{
-    height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    z-index:2;
-}
-.box{
-    background:white;
-    padding:40px;
-    border-radius:20px;
-    width:90%;
-    max-width:350px;
-}
-input,button{
-    padding:12px;
-    font-size:18px;
-    border-radius:10px;
-    border:none;
-    width:90%;
-    margin:10px 0;
-}
-button{
-    background:#ff9a9e;
-    color:white;
-    cursor:pointer;
-}
-#error{color:red;display:none;}
-
-/* ================== صفحة الرسالة ================== */
-#messagePage{
-    position:fixed;
-    inset:0;
-    background:radial-gradient(circle,#111,#000);
-    color:white;
-    display:none;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
-    z-index:10;
-    padding:20px;
-}
-#typeText{
-    font-size:30px;
-    line-height:1.9;
-    max-width:650px;
-    text-shadow:0 0 25px rgba(255,255,255,0.8);
-}
-@media(max-width:600px){
-    #typeText{font-size:22px;}
-}
-
-/* ================== الموقع بدون الصور ================== */
-#siteWithoutPhotos{
-    display:none;
-    z-index:1;
-    position:relative;
-}
-header{
-    background:rgba(255,255,255,0.85);
-    padding:30px;
-}
-.counter{font-size:20px;margin-top:15px;}
-#photos{padding:20px; display:none;}
-img,video{
-    width:90%;
-    max-width:320px;
-    margin:15px auto;
-    display:block;
-    border-radius:15px;
-    box-shadow:0 5px 10px rgba(0,0,0,0.4);
-}
-.memory{
-    background:white;
-    padding:15px;
-    margin:15px auto;
-    border-radius:15px;
-    max-width:500px;
-}
-
-/* ================== الصورة مع النص ================== */
-#photoButton{
-    position:relative;
-    width:200px;
-    margin:20px auto;
-    cursor:pointer;
-}
-#photoButton img{
-    width:100%;
-    border-radius:20px;
-    box-shadow:0 5px 10px rgba(0,0,0,0.4);
-    transition: transform 0.3s ease;
-}
-#photoButton:hover img{
-    transform: scale(1.05);
-}
-#photoButton div{
-    position:absolute;
-    top:50%;
-    left:50%;
-    transform:translate(-50%,-50%);
-    color:white;
-    font-size:22px;
-    font-weight:bold;
-    text-shadow:0 0 10px rgba(0,0,0,0.7);
-}
-</style>
-</head>
-
 <body>
 
 <div class="hearts" id="hearts"></div>
+<div id="loveText">❤️ بحبك ❤️</div>
+
 <!-- صفحة الدخول -->
 <div id="login">
     <div class="box">
@@ -187,20 +18,22 @@ img,video{
     <div id="typeText"></div>
 </div>
 
-<!-- الموقع بدون الصور -->
+<!-- الموقع -->
 <div id="siteWithoutPhotos">
 
 <audio id="music" loop>
-    <source src="love.mp3">
+    <source src="love.mp3" type="audio/mpeg">
 </audio>
 
 <header>
     <h1>❤️ my all i have ❤️</h1>
     <p>بحبك وبموت فيكي</p>
     <div class="counter" id="counter"></div>
+
+    <!-- زر الصوت -->
+    <button onclick="toggleMusic()">🔊 تشغيل / كتم</button>
 </header>
 
-<!-- الصورة مع النص بدل الزر -->
 <div id="photoButton" onclick="showPhotos()">
     <img src="myphoto.jpeg">
     <div>😂❤️دوسي عليا</div>
@@ -209,16 +42,6 @@ img,video{
 <section id="photos">
     <h2>صورنا 📸</h2>
     <img src="image1.jpeg"><img src="image2.jpeg"><img src="image3.jpeg">
-    <img src="image4.jpeg"><img src="image5.jpeg">
-    <img src="image6.jpeg"><img src="image7.jpeg"><img src="image8.jpeg">
-   
-</section>
-
-<section>
-    <h2>ذكرياتنا 💌</h2>
-    <div class="memory">فاكره اول مره اتقابلنا فيها لما كنت واقف مستنيكي بالورد بالساعه ونص ومستني اشوفك مش هنسى لما اول مره قعدنا نتكلم واحنا مش فاهمين انتي مين وانا مين بس ساعتها فعلا كانت احلى يوم يحصلي</div>
-    <div class="memory">فاكره اول مره انجتك فيها وانا بروحك كنت حاسس ساعتها انك فعلا بتاعتي وكان دايما كل مره بروحك فيها بنعمل حاجه جديده وكان تاني مره مسكت فيها ايدك وبعد كده مسكتها وبوستها</div>
-    <div class="memory">فاكره لما انا وانتي كنا قاعدين سوا وجت الست العجوزه بالورد ودعتلنا اننا نتجوز ونبقا مع بعض طول العمر ساعتها مكنتش عايز حاجه ف الدنيا غير ان كلام الست ده يتحقق يمكن مبكونش بعرف اوصف حبي ليكي وانا معاكي بس صدقيني انتي متعرفيش انتي غلاوتك ف قلبي عامله ازاي ياريتاج</div>
 </section>
 
 </div>
@@ -235,10 +58,9 @@ const siteWithoutPhotos=document.getElementById("siteWithoutPhotos");
 const music=document.getElementById("music");
 const loveText=document.getElementById("loveText");
 const hearts=document.getElementById("hearts");
-const video=document.getElementById("video");
 const counter=document.getElementById("counter");
 
-// ====== الرسالة ======
+// ====== رسالة ======
 const message =
 "ريتاج…\n\n" +
 "في لحظة بسيطة\n" +
@@ -247,41 +69,63 @@ const message =
 "وصوتك راحة\n\n" +
 "ومع كل ثانية…\n" +
 "بحبك أكتر ❤️";
+
 let i=0;
 
-// ====== تسجيل الدخول ======
-loginBtn.onclick = ()=>{
+// ====== دخول ======
+loginBtn.onclick = startLogin;
+
+password.addEventListener("keypress", function(e){
+    if(e.key==="Enter") startLogin();
+});
+
+password.oninput = ()=> error.style.display="none";
+
+function startLogin(){
     if(password.value==="1"){
         login.style.display="none";
         messagePage.style.display="flex";
         typeText.innerHTML="";
         i=0;
         typeWriter();
-    }else error.style.display="block";
-};
 
-// ====== كتابة الرسالة حرف حرف ======
+        // تشغيل الصوت بعد التفاعل
+        music.play().catch(()=>{});
+    }else{
+        error.style.display="block";
+    }
+}
+
+// ====== كتابة ======
 function typeWriter(){
     if(i<message.length){
         typeText.innerHTML += message[i]==="\n" ? "<br>" : message[i];
         i++;
-        let speed = message[i-1]==="…" ? 350 : 70;
-        setTimeout(typeWriter, speed);
+        setTimeout(typeWriter,70);
     }else{
         setTimeout(()=>{
             messagePage.style.display="none";
             siteWithoutPhotos.style.display="block";
             loveText.classList.add("showLove");
-            music.play().catch(()=>{});
-            document.getElementById("photos").style.display="none";
         },500);
     }
 }
 
-// ====== الصور ======
-function showPhotos(){document.getElementById("photos").style.display="block";}
+// ====== صور ======
+function showPhotos(){
+    document.getElementById("photos").style.display="block";
+}
 
-// ====== العداد ======
+// ====== صوت ======
+function toggleMusic(){
+    if(music.paused){
+        music.play();
+    }else{
+        music.pause();
+    }
+}
+
+// ====== عداد ======
 const start=new Date("2024-08-25T03:00:00");
 setInterval(()=>{
     const diff=new Date()-start;
@@ -291,7 +135,7 @@ setInterval(()=>{
     counter.innerHTML=`نعرف بعض من ${d} يوم و ${h} ساعة و ${m} دقيقة ❤️`;
 },1000);
 
-// ====== القلوب ======
+// ====== قلوب ======
 function createHeart(){
     const el=document.createElement("div");
     el.className="heart";
@@ -302,16 +146,11 @@ function createHeart(){
     hearts.appendChild(el);
     setTimeout(()=>el.remove(),10000);
 }
-setInterval(createHeart,500);
+setInterval(createHeart,400);
 
-// ====== فيديو ======
-video.onplay=()=>music.pause();
-video.onpause=()=>music.play();
-
-// ====== ليل/نهار ======
+// ====== ليل ======
 const hour = new Date().getHours();
 if(hour >=18 || hour <6) document.body.classList.add("night");
 </script>
 
 </body>
-</html>
