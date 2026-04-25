@@ -190,9 +190,10 @@ img,video{
 <!-- الموقع بدون الصور -->
 <div id="siteWithoutPhotos">
 
-<audio id="music">
-    <source src="love.mp3" type="audio/mpeg">
+<audio id="music" loop>
+    <source src="love.mp3">
 </audio>
+
 <header>
     <h1>❤️ my all i have ❤️</h1>
     <p>بحبك وبموت فيكي</p>
@@ -303,7 +304,9 @@ function createHeart(){
 }
 setInterval(createHeart,500);
 
-
+// ====== فيديو ======
+video.onplay=()=>music.pause();
+video.onpause=()=>music.play();
 
 // ====== ليل/نهار ======
 const hour = new Date().getHours();
