@@ -5,7 +5,6 @@
 <title>❤️ my all i have ❤️</title>
 
 <style>
-/* ================== الأساس ================== */
 body{
     margin:0;
     font-family:Arial, sans-serif;
@@ -13,10 +12,6 @@ body{
     background:linear-gradient(135deg,#ff9a9e,#fad0c4);
     overflow-x:hidden;
     transition:0.5s;
-}
-body.night{
-    background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
-    color:white;
 }
 
 /* ================== القلوب ================== */
@@ -223,7 +218,6 @@ img,video{
 </div>
 
 <script>
-// ====== العناصر ======
 const loginBtn=document.getElementById("loginBtn");
 const password=document.getElementById("password");
 const login=document.getElementById("login");
@@ -233,10 +227,8 @@ const typeText=document.getElementById("typeText");
 const siteWithoutPhotos=document.getElementById("siteWithoutPhotos");
 const music=document.getElementById("music");
 const hearts=document.getElementById("hearts");
-const video=document.getElementById("video");
 const counter=document.getElementById("counter");
 
-// ====== الرسالة ======
 const message =
 "ريتاج…\n\n" +
 "في لحظة بسيطة\n" +
@@ -245,13 +237,12 @@ const message =
 "وصوتك راحة\n\n" +
 "ومع كل ثانية…\n" +
 "بحبك أكتر ❤️";
+
 let i=0;
 
-// ====== تسجيل الدخول ======
 loginBtn.onclick = ()=>{
     if(password.value==="1"){
 
-        // ✅ تشغيل الصوت (التعديل الوحيد)
         music.currentTime = 0;
         music.play().catch(()=>{});
 
@@ -260,10 +251,10 @@ loginBtn.onclick = ()=>{
         typeText.innerHTML="";
         i=0;
         typeWriter();
+
     }else error.style.display="block";
 };
 
-// ====== كتابة الرسالة حرف حرف ======
 function typeWriter(){
     if(i<message.length){
         typeText.innerHTML += message[i]==="\n" ? "<br>" : message[i];
@@ -279,10 +270,10 @@ function typeWriter(){
     }
 }
 
-// ====== الصور ======
-function showPhotos(){document.getElementById("photos").style.display="block";}
+function showPhotos(){
+    document.getElementById("photos").style.display="block";
+}
 
-// ====== العداد ======
 const start=new Date("2024-08-25T03:00:00");
 setInterval(()=>{
     const diff=new Date()-start;
@@ -292,7 +283,6 @@ setInterval(()=>{
     counter.innerHTML=`نعرف بعض من ${d} يوم و ${h} ساعة و ${m} دقيقة ❤️`;
 },1000);
 
-// ====== القلوب ======
 function createHeart(){
     const el=document.createElement("div");
     el.className="heart";
@@ -304,9 +294,6 @@ function createHeart(){
     setTimeout(()=>el.remove(),10000);
 }
 setInterval(createHeart,500);
-
-
-
 </script>
 
 </body>
